@@ -5,7 +5,7 @@ import { createAppContainer } from "react-navigation";
 import { createBottomTabNavigator } from "react-navigation-tabs";
 
 import ReadStoryScreen from './screens/readStoryScreen.js';
-import WriteStoryScreen from './screens/WriteStoryScreen.js';
+import WriteStoryScreen from './screens/writeStoryScreen.js';
 
 export default class App extends React.Component {
   render(){

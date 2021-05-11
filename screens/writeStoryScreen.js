@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, Header, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
+import { Text, View, Header, TextInput, StyleSheet, TouchableOpacity, KeyboardAvoidingView, Alert} from 'react-native';
 import db from '../config'
 import * as firebase from 'firebase';
 
@@ -19,29 +19,32 @@ submitStory = () => {
         author: this.state.author,
         story: this.state.story,
     })
+    Alert.alert("Story Has Been Sumbmited")
 }
 
 render() {
     return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <TextInput style={styles.inputBox}
-                placeholder="Title"
-                onChangeText={(text) => { this.setState({ title: text }) }}
-            />
-            <TextInput style={styles.inputBox}
-                placeholder="Author"
-                onChangeText={(text) => { this.setState({ author: text }) }}
-            />
-            <TextInput multiline={true} style={styles.storyInputBox}
-                placeholder="Write story"
-                onChangeText={(text) => { this.setState({ story: text }) }}
-            />
+        <KeyboardAvoidingView style={styles.container} behavior='padding' enabled>
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                <TextInput style={styles.inputBox}
+                    placeholder="Title"
+                    onChangeText={(text) => { this.setState({ title: text }) }}
+                />
+                <TextInput style={styles.inputBox}
+                    placeholder="Author"
+                    onChangeText={(text) => { this.setState({ author: text }) }}
+                />
+                <TextInput multiline={true} style={styles.storyInputBox}
+                    placeholder="Write story"
+                    onChangeText={(text) => { this.setState({ story: text }) }}
+                />
 
-            <TouchableOpacity style={styles.submitButton}
-                onPress={this.submitStory()} >
-                <Text style={styles.submitButtonText}>Submit</Text>
-            </TouchableOpacity>
-        </View>
+                <TouchableOpacity style={styles.submitButton}
+                    onPress={this.submitStory()} >
+                    <Text style={styles.submitButtonText}>Submit</Text>
+                </TouchableOpacity>
+            </View>
+        </KeyboardAvoidingView>
     );
 }
 }
